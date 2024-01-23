@@ -58,9 +58,9 @@ const DetailsComponent = ({ data }) => {
               ? `${data.first_air_date.split("-")[2]}/${
                   data.first_air_date.split("-")[1]
                 }/${data.first_air_date.split("-")[0]}`
-              : `${data.air_date.split("-")[2]}/${
-                  data.air_date.split("-")[1]
-                }/${data.air_date.split("-")[0]}`}
+              : `${data.air_date?.split("-")[2]}/${
+                  data.air_date?.split("-")[1]
+                }/${data.air_date?.split("-")[0]}`}
           </li>
 
           {data.genres?.map((item, index) => {
