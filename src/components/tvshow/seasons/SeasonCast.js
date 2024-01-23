@@ -20,7 +20,7 @@ const SeasonCast = () => {
     }
 
     fetchDataFunction();
-  }, [id, season_number]);
+  }, [id, season_number, dispatch]);
 
   const seasonPeople = useSelector((state) => state.series.seasonsCast.data);
 

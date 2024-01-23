@@ -15,7 +15,7 @@ const MovieKeywords = () => {
     }
 
     fetchDataFunction();
-  }, [id]);
+  }, [id, dispatch]);
 
   const moviesKeywords = useSelector((state) => state.movie.movieKeyword.data);
 

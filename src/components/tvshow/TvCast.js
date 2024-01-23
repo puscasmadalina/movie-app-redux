@@ -17,7 +17,7 @@ const Cast = () => {
     }
 
     fetchDataFunction();
-  }, [id]);
+  }, [id, dispatch]);
 
   const tvCast = useSelector((state) => state.series.tvActors.data);
 

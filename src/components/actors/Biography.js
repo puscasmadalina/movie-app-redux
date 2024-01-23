@@ -18,7 +18,7 @@ const Biography = () => {
     }
 
     fetchDataFunction();
-  }, [id]);
+  }, [id, dispatch]);
 
   const credits = useSelector((state) => state.actors.actorCredit.data);
   const details = useSelector((state) => state.actors.actorDetail.data);

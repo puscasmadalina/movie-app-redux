@@ -20,7 +20,7 @@ const SimilarTv = () => {
     }
 
     fetchDataFunction();
-  }, [id]);
+  }, [id, dispatch]);
 
   const similarTvShow = useSelector((state) => state.series.tvSimilar.data);
 

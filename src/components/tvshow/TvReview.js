@@ -17,7 +17,7 @@ const TvReview = () => {
     }
 
     fetchDataFunction();
-  }, [id]);
+  }, [id, dispatch]);
   const tvReview = useSelector((state) => state.series.tvReviews.data);
 
   const nextPage = useSelector((state) => state.app.loadMore.page);

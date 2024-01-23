@@ -14,7 +14,7 @@ const Details = () => {
     }
 
     fetchDataFunction();
-  }, [id]);
+  }, [id, dispatch]);
 
   const actorDetails = useSelector((state) => state.actors.actorDetail.data);
   return (

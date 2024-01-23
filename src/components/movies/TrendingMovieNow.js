@@ -12,7 +12,7 @@ const TrendingMovieNow = () => {
       dispatch(trendingMovies(res));
     }
     fetchDataFunction();
-  }, []);
+  }, [dispatch]);
   const trendingMoviesNow = useSelector(
     (state) => state.app.trendingMovie.data
   );

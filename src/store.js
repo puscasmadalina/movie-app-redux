@@ -3,7 +3,7 @@ import appReducer from "./slices/AppSlice";
 import movieReducer from "./slices/MovieSlice";
 import tvShowReducer from "./slices/TvShowSlice";
 import actorsReducer from "./slices/ActorSlice";
-import { persistStore, persistReducer } from "redux-persist";
+import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 const persistConfig = {

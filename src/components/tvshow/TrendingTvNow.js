@@ -12,7 +12,7 @@ const TrendingTvNow = () => {
       dispatch(trendingTvShows(res));
     }
     fetchDataFunction();
-  }, []);
+  }, [dispatch]);
   const trendingTvShow = useSelector((state) => state.app.trendingTv.data);
 
   return (

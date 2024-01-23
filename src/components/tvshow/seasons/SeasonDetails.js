@@ -22,7 +22,7 @@ const SeasonDetails = () => {
     }
 
     fetchDataFunction();
-  }, [id, season_number]);
+  }, [id, season_number, dispatch]);
 
   const seasonsDetailed = useSelector((state) => state.series.tvSeason.data);
 

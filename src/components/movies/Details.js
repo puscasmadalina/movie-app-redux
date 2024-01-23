@@ -17,7 +17,7 @@ const Details = () => {
     }
 
     fetchDataFunction();
-  }, [id]);
+  }, [id, dispatch]);
 
   const movieDetails = useSelector((state) => state.movie.movieDetail.data);
 

@@ -6,7 +6,6 @@ const SeasonFullCast = () => {
   const seasonPeople = useSelector((state) => state.series.seasonsCast.data);
   return (
     <div className="flex gap-3 flex-col pl-10 pr-10">
-      {/* <TvHeader /> */}
       <div className="grid grid-cols-2">
         <div className="flex flex-col gap-3 items-center">
           <span className="font-bold underline text-xl italic font-serif">

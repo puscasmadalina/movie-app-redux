@@ -19,7 +19,7 @@ const MovieReview = () => {
     }
 
     fetchDataFunction();
-  }, [id]);
+  }, [id, dispatch]);
   const moviesReview = useSelector((state) => state.movie.moviesReviews.data);
   const nextPage = useSelector((state) => state.app.loadMore.page);
 

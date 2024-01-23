@@ -17,7 +17,7 @@ const Details = () => {
     }
 
     fetchDataFunction();
-  }, [id]);
+  }, [id, dispatch]);
 
   const tvDetails = useSelector((state) => state.series.tvDetail.data);
 

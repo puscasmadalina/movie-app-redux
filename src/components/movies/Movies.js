@@ -4,7 +4,8 @@ import { setMovies } from "../../slices/MovieSlice";
 import { fetchData } from "../../utils/utils";
 import { loadingMore } from "../../slices/AppSlice";
 import Filter from "./Filter";
-import { Link } from "react-router-dom";
+import MovieCard from "./MovieCard";
+import HomeButton from "../(utils)/HomeButton";
 
 const Movies = () => {
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ const Movies = () => {
     }
 
     fetchDataFunction();
-  }, []);
+  }, [dispatch]);
 
   const moviesList = useSelector((state) => state.movie.movies.data);
   const nextPage = useSelector((state) => state.app.loadMore.page);
@@ -46,19 +47,7 @@ const Movies = () => {
   return (
     <div className="pl-10 pr-10 flex flex-col gap-3">
       <div className="flex flex-row items-center justify-between mb-10">
-        <Link to={`/`} className=" flex flex-row gap-2 items-center">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            id="Bold"
-            viewBox="0 0 24 24"
-            width="30"
-            height="30"
-            className="bg-yellow-500 p-1 rounded-xl"
-          >
-            <path d="M4.943,5.606,1.024,9.525a3.585,3.585,0,0,0,0,4.95l3.919,3.919a1.5,1.5,0,1,0,2.121-2.121L4.285,13.492l18.25-.023a1.5,1.5,0,0,0,1.5-1.5v0a1.5,1.5,0,0,0-1.5-1.5L4.3,10.492,7.064,7.727A1.5,1.5,0,0,0,4.943,5.606Z" />
-          </svg>
-          <span className="font-bold text-xl">Go to Home</span>
-        </Link>
+        <HomeButton />
 
         <span className="text-4xl font-serif font-bold text-yellow-500">
           Movies
@@ -94,61 +83,11 @@ const Movies = () => {
           <Filter />
         </div>
         <div className="grid grid-cols-4 w-[70%] gap-5">
-          {movieResults.length > 0
-            ? movieResults?.map((item, index) => {
-                return (
-                  <Link
-                    to={`/movie/${item.id}`}
-                    key={index}
-                    className="flex flex-col rounded-xl bg-gray-700"
-                  >
-                    <div className="">
-                      <img
-                        className="rounded-xl flex items-center mb-2"
-                        src={`https://image.tmdb.org/t/p/original${item.poster_path}`}
-                        alt={item.title}
-                      />
-                      <span className="text-lg font-bold bg-yellow-500 text-black p-1 rounded-2xl">
-                        {item.vote_average.toFixed(1)}
-                      </span>
-                    </div>
-
-                    <div className="p-2 text-xl h-24  font-serif italic text-black font-bold">
-                      {item.title}
-                    </div>
-                    <div className="text-xs text-gray-400 p-2 font-serif h-18 items-center">
-                      {item.release_date}
-                    </div>
-                  </Link>
-                );
-              })
-            : moviesList?.map((item, index) => {
-                return (
-                  <Link
-                    to={`/movie/${item.id}`}
-                    key={index}
-                    className="flex flex-col rounded-xl bg-gray-700"
-                  >
-                    <div className="">
-                      <img
-                        className="rounded-xl flex items-center mb-2"
-                        src={`https://image.tmdb.org/t/p/original${item.poster_path}`}
-                        alt={item.title}
-                      />
-                      <span className="text-lg font-bold bg-yellow-500 text-black p-1 rounded-2xl">
-                        {item.vote_average.toFixed(1)}
-                      </span>
-                    </div>
-
-                    <div className="p-2 text-xl h-24  font-serif italic text-black font-bold">
-                      {item.title}
-                    </div>
-                    <div className="text-xs text-gray-400 p-2 font-serif h-18 items-center">
-                      {item.release_date}
-                    </div>
-                  </Link>
-                );
-              })}
+          {movieResults.length > 0 ? (
+            <MovieCard data={movieResults} />
+          ) : (
+            <MovieCard data={moviesList} />
+          )}
         </div>
       </div>
       <button onClick={handleLoadMore}>

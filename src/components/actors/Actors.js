@@ -3,7 +3,8 @@ import { setActor } from "../../slices/ActorSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchData } from "../../utils/utils.js";
 import { loadingMore } from "../../slices/AppSlice";
-import { Link } from "react-router-dom";
+import ActorCard from "./ActorCard.js";
+import HomeButton from "../(utils)/HomeButton.js";
 
 const Actors = () => {
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ const Actors = () => {
       dispatch(setActor(res));
     }
     fetchDataFunction();
-  }, []);
+  }, [dispatch]);
   const actorsList = useSelector((state) => state.actors.actor.data);
   const nextPage = useSelector((state) => state.app.loadMore.page);
 
@@ -42,19 +43,7 @@ const Actors = () => {
   return (
     <div className="pl-10 pr-10 flex flex-col gap-3">
       <div className="flex flex-row items-center justify-between mb-10">
-        <Link to={`/`} className=" flex flex-row gap-2 items-center">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            id="Bold"
-            viewBox="0 0 24 24"
-            width="30"
-            height="30"
-            className="bg-yellow-500 p-1 rounded-xl"
-          >
-            <path d="M4.943,5.606,1.024,9.525a3.585,3.585,0,0,0,0,4.95l3.919,3.919a1.5,1.5,0,1,0,2.121-2.121L4.285,13.492l18.25-.023a1.5,1.5,0,0,0,1.5-1.5v0a1.5,1.5,0,0,0-1.5-1.5L4.3,10.492,7.064,7.727A1.5,1.5,0,0,0,4.943,5.606Z" />
-          </svg>
-          <span className="font-bold text-xl">Back to Home</span>
-        </Link>
+        <HomeButton />
         <div className="text-4xl font-serif font-bold text-yellow-500">
           Actors
         </div>
@@ -85,67 +74,11 @@ const Actors = () => {
       </div>
 
       <div className="grid grid-cols-4 gap-4 pb-3">
-        {actorResult.length > 0
-          ? actorResult?.map((item, index) => {
-              return (
-                <Link to={`/actor/${item.id}`} key={index}>
-                  {item.profile_path ? (
-                    <div className="flex flex-col rounded-xl bg-gray-700">
-                      <img
-                        className="rounded-xl flex items-center"
-                        src={`https://image.tmdb.org/t/p/original${item.profile_path}`}
-                        alt={item.name}
-                      />
-                      <div className="p-2 text-xl h-40  font-serif flex flex-col gap-1">
-                        <span className="h-[35%] text-lg flex flex-col justify-center text-black font-bold">
-                          {item.name}
-                        </span>
-                        <hr className="opacity-40" />
-                        <div className="flex flex-col h-[65%] justify-start">
-                          {item.known_for.map((actors) => {
-                            return (
-                              <span className="text-sm">{actors.title}</span>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    </div>
-                  ) : (
-                    <></>
-                  )}
-                </Link>
-              );
-            })
-          : actorsList?.map((item, index) => {
-              return (
-                <Link to={`/actor/${item.id}`} key={index}>
-                  {item.profile_path ? (
-                    <div className="flex flex-col rounded-xl bg-gray-700">
-                      <img
-                        className="rounded-xl flex items-center"
-                        src={`https://image.tmdb.org/t/p/original${item.profile_path}`}
-                        alt={item.name}
-                      />
-                      <div className="p-2 text-xl h-40  font-serif flex flex-col gap-1">
-                        <span className="h-[35%] text-lg flex flex-col justify-center text-black font-bold">
-                          {item.name}
-                        </span>
-                        <hr className="opacity-40" />
-                        <div className="flex flex-col h-[65%] justify-start">
-                          {item.known_for.map((actors) => {
-                            return (
-                              <span className="text-sm">{actors.title}</span>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    </div>
-                  ) : (
-                    <></>
-                  )}
-                </Link>
-              );
-            })}
+        {actorResult.length > 0 ? (
+          <ActorCard data={actorResult} />
+        ) : (
+          <ActorCard data={actorsList} />
+        )}
       </div>
       <button onClick={handleLoadMore}>
         <span className="bg-yellow-500 rounded-xl p-2 text-black font-serif font-bold">

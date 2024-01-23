@@ -15,7 +15,7 @@ const TvShowKeywords = () => {
     }
 
     fetchDataFunction();
-  }, [id]);
+  }, [id, dispatch]);
 
   const tvKeywords = useSelector((state) => state.series.tvKeyword.data);
 

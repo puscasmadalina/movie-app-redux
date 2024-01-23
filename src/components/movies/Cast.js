@@ -15,7 +15,7 @@ const Cast = () => {
     }
 
     fetchDataFunction();
-  }, [id]);
+  }, [id, dispatch]);
 
   const movieCast = useSelector((state) => state.movie.moviesActors.data);
 
