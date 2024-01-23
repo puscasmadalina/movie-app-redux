@@ -58,9 +58,11 @@ const DetailsComponent = ({ data }) => {
               ? `${data.first_air_date.split("-")[2]}/${
                   data.first_air_date.split("-")[1]
                 }/${data.first_air_date.split("-")[0]}`
-              : `${data.air_date?.split("-")[2]}/${
-                  data.air_date?.split("-")[1]
-                }/${data.air_date?.split("-")[0]}`}
+              : data.air_date && data.air_date 
+            ? `${data.air_date?.split("-")[2]}/
+               ${data.air_date?.split("-")[1]}/
+               ${data.air_date?.split("-")[0]}`
+           : "No date found" }
           </li>
 
           {data.genres?.map((item, index) => {
